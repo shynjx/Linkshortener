@@ -476,7 +476,7 @@ function App() {
                   </table>
                 </div>
               ) : <EmptyState title={search ? 'Nenhum resultado encontrado' : 'Você ainda não criou links'} description={search ? 'Tente buscar por outro endereço ou código.' : 'Volte para a visão geral e crie seu primeiro link.'} />}
-              <div className="api-note"><CircleHelp size={15} /> A API atual retorna até 5 links recentes e 5 mais acessados. A listagem completa exige uma rota de paginação no backend.</div>
+              <div className="api-note"><CircleHelp size={15} /> A API atual retorna até 5 links recentes e 5 mais acessados.</div>
             </section>
           )}
 
