@@ -28,11 +28,11 @@ const TOKEN_KEY = 'linkshortener_token'
 const USER_KEY = 'linkshortener_user'
 
 async function apiRequest(path, { token, ...options } = {}) {
-  const response = await fetch(\`\${API_URL}\${path}\`, {
+  const response = await fetch(`${API_URL}${path}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
-      ...(token ? { Authorization: \`Bearer \${token}\` } : {}),
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...options.headers,
     },
   })
@@ -58,7 +58,7 @@ function formatDate(value) {
 }
 
 function getShortUrl(shortCode) {
-  return \`\${API_URL}/\${shortCode}\`
+  return `${API_URL}/${shortCode}`
 }
 
 function getDomain(value = '') {
@@ -164,7 +164,7 @@ function Sidebar({ user, onLogout, mobileOpen, setMobileOpen, activeView, setAct
   return (
     <>
       {mobileOpen && <button className="sidebar-scrim" onClick={() => setMobileOpen(false)} aria-label="Fechar menu" />}
-      <aside className={\`sidebar \${mobileOpen ? 'sidebar-open' : ''}\`}>
+      <aside className={`sidebar ${mobileOpen ? 'sidebar-open' : ''}`}>
         <div className="sidebar-top">
           <a className="brand" href="/" aria-label="Linkora início">
             <span className="brand-mark"><Link2 size={20} /></span>
@@ -209,7 +209,7 @@ function StatCard({ label, value, detail, icon: Icon, tone }) {
     <article className="stat-card">
       <div className="stat-topline">
         <span>{label}</span>
-        <span className={\`stat-icon \${tone}\`}><Icon size={18} /></span>
+        <span className={`stat-icon ${tone}`}><Icon size={18} /></span>
       </div>
       <strong className="stat-value">{formatNumber(value)}</strong>
       <span className="stat-detail">{detail}</span>
@@ -319,7 +319,7 @@ function App() {
     setCreatedLink(null)
 
     let normalizedUrl = url.trim()
-    if (!/^https?:\/\//i.test(normalizedUrl)) normalizedUrl = \`https://\${normalizedUrl}\`
+    if (!/^https?:\/\//i.test(normalizedUrl)) normalizedUrl = `https://${normalizedUrl}`
 
     try {
       new URL(normalizedUrl)
@@ -390,7 +390,7 @@ function App() {
           <section className="welcome-row">
             <div>
               <div className="eyebrow"><Sparkles size={13} /> SEU PAINEL</div>
-              <h1>{activeView === 'links' ? 'Seus links.' : \`Olá, \${(user?.name || 'por aí').split(' ')[0]}.\`}</h1>
+              <h1>{activeView === 'links' ? 'Seus links.' : `Olá, ${(user?.name || 'por aí').split(' ')[0]}.`}</h1>
               <p>{activeView === 'links' ? 'Gerencie e acompanhe os links que você criou.' : 'Aqui está um resumo do desempenho dos seus links.'}</p>
             </div>
             <div className="welcome-date"><span>HOJE</span><strong>{new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date())}</strong></div>
@@ -489,7 +489,7 @@ function App() {
 
 function EmptyState({ title, description, compact = false }) {
   return (
-    <div className={\`empty-state \${compact ? 'compact' : ''}\`}>
+    <div className={`empty-state ${compact ? 'compact' : ''}`}>
       <div className="empty-icon"><QrCode size={22} /></div>
       <strong>{title}</strong>
       <span>{description}</span>
