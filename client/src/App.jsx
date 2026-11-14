@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   Activity,
-  ArrowDownRight,
   ArrowUpRight,
   BarChart3,
   Check,
-  ChevronDown,
   CircleHelp,
   Clipboard,
   ExternalLink,
@@ -17,7 +15,6 @@ import {
   Plus,
   QrCode,
   Search,
-  Settings2,
   ShieldCheck,
   Sparkles,
   WandSparkles,
@@ -276,11 +273,7 @@ function App() {
       })
       setError('')
     } catch (err) {
-      if (err.message.includes('Token') || err.message.includes('token') || err.message.includes('Acesso negado')) {
-        handleLogout()
-      } else {
-        setError(err.message)
-      }
+      setError(err.message)
     } finally {
       setRefreshing(false)
       setLoading(false)
@@ -297,10 +290,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (!token) {
-      setLoading(false)
-      return
-    }
+    if (!token) return
     let cancelled = false
     async function validateSession() {
       try {
