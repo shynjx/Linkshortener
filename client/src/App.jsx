@@ -465,7 +465,7 @@ function App() {
           {activeView === 'links' && (
             <section className="panel all-links-panel">
               <div className="panel-heading all-links-heading">
-                <div><h2>Todos os seus links</h2><p>Pesquise entre os links recentes e mais acessados retornados pela API.</p></div>
+                <div><h2>Links disponíveis</h2><p>Pesquise entre os links recentes e mais acessados retornados pela API.</p></div>
                 <div className="search-box"><Search size={16} /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Buscar link..." /></div>
               </div>
               {filteredLinks.length ? (
